@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search result for</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav">
+            <a href="{% url "products:index" %}"><img src="{% static 'imgs/logos.png' %}" class="brand-logo" alt=""></a>
+            <div class="nav-item">
+                <div class="search">
+                    <input type="text" class="search-box" placeholder="search brand,product">
+                    <button class="search-btn">search</button>
+                </div>
+                
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'store:logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i></i></a>
+                {%else%}
+                <a href="{% url 'products:login_view' %}"><i class="fa fa-user nv"></i></a>
+                {% endif %}
+                <a href="{% url 'products:cart' %}"><i class="fa fa-shopping-cart nv"></i></a>
+            </div>
+        </div>
+        <ul class="links-container">
+            <li class="link-item"><a href="{% url 'products:index' %}" class="link">Home</a></li>
+            <li class="link-item"><a href="#" class="link">All Department</a></li>
+            <li class="link-item"><a href="{% url 'products:show_product' 2  %}" class="link">Women</a></li>
+            <li class="link-item"><a href="{% url 'products:show_product' 1  %}" class="link">Men</a></li>
+            <li class="link-item"><a href="{% url 'products:show_product' 5  %}" class="link">Kid</a></li>
+            <li class="link-item"><a href="{% url 'products:show_product' 7  %}" class="link">accessories</a></li>
+            <li class="link-item"><a href="#" class="link">gift card</a></li>
+        </ul>
+    </nav>
+
+
+<section class="search-results">
+    <h2 style="margin-top: 4px;  width: 190px; margin: auto; margin-bottom: 40px; color: chocolate;">All
+        Products</h2>
+
+
+    <div class=" row1">
+        <div class="col1">
+            <div class="dropdown">
+                <button class="drop-btn">Ctaegory <i class="fa-solid fa-angle-down"></i></button>
+                <div class="dropdown-content">
+                    <form>
+                        <button class="a"><a href="{% url 'products:show_product' 1 %}">Men</a></button>
+                          <button class="a"><a href="{% url 'products:show_product' 2 %}">Women</a></button>
+                          <button class="a"><a href="{% url 'products:show_product' 5 %}">Kids</a></button>
+                          <button class="a"><a href="{% url 'products:show_product' 7 %}">Accessories</a></button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col1">
+            <div class="price-short">
+                <form action="{% url 'products:show_product' pk=id %}" method="POST" >
+                    {% csrf_token %}
+
+                    <input type="number" placeholder="Price range" class="i-box" name="p-low">
+
+                    <label for="lname">to</label>
+
+                    <input type="number" placeholder="Price range " class="i-box" name="p-high">
+
+
+                    <input type="submit" value="search" class="i-box">
+                </form>
+
+            </div>
+        </div>
+        <div class="col1">
+            <div class="dropdown">
+                <button class="drop-btn">Price <i class="fa-solid fa-angle-down"></i></button>
+                <div class="dropdown-content">
+                    <form action="{% url 'products:show_product' pk=id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" class="a" value="Price Low to High" name="low_price">
+                        <input type="submit" class="a" value="Price High to low" name="high_price">
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col1">
+            <div class="dropdown">
+                <button class="drop-btn">Best choice <i class="fa-solid fa-angle-down"></i></button>
+                <div class="dropdown-content">
+                    <form action="">
+                        <input type="submit" class="a" value="By Ratting">
+                        <input type="submit" class="a" value="By Reviews">
+                        <input type="submit" class="a" value="By sells">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <h2 class="heading">search results for <span>product</span></h2>
+    <div class="product-container">
+        {% for prod in product %}
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="discount-tag">50% Off</span>
+                    <img src="{{ prod.image.url }}" class="product-thumb" alt="">
+                    <button class="card-btn">Add to whislist</button>
+                </div>
+                <div class="product-info">
+                    <h2 class="product-brand"><a href="">{{ prod.name }}</a></h2>
+                    <p class="product-s-des">{{ prod.preview_des }}</p>
+                    <span class="price">{{ prod.price }}tk</span> <span class="act-price">{{ prod.old_price }}tk</span>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+
+<footer></footer>
+
+
+<!-- <script src="{% static 'js/nav.js' %}"></script> -->
+<script src="{% static 'js/footer.js' %}"></script>
+
+</body>
+</html>

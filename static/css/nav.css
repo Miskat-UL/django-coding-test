@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'roboto' , sans-serif;
+}
+
+.navbar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(246, 246, 248);
+    z-index: 9;
+    
+}
+
+.nv{
+    color: red;
+}
+
+.nv:hover{
+    color: black;
+}
+
+.nav{
+    padding: 10px 10vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.brand-logo{
+    height: 60px;
+}
+
+.nav-item{
+    display: flex;
+    align-items: center;
+    
+}
+
+.search{
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box{
+    width: 500px;
+    height: 40px;
+    padding: 10px 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border: 1px solid red;
+    text-transform: capitalize;
+    background: none;
+    color: rgb(158, 146, 146);
+    outline: none;
+}
+
+.search-btn{
+    width: 20%;
+    height: 40px;
+    padding: 10px 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 2px solid red;
+    outline: none;
+    cursor: pointer;
+    background: red;
+    color: white;
+    text-transform: capitalize;
+    font-size: 15px;
+}
+.search-btn:hover{
+    background:black;
+    color: red;
+}
+
+.search-box::placeholder{
+    color: rgb(125, 125, 128);
+}
+
+.nav-item a{
+    margin-left: 20px;
+}
+
+.links-container{
+    width: 100%;
+    display: flex;
+    padding: 8px 10vw;
+    justify-content: center;
+    list-style: none;
+    border-top: 1px solid rgb(212, 189, 189);
+    border-bottom: 1px solid rgb(212, 189, 189);
+}
+.link{
+    text-transform: capitalize;
+    padding: 0 27px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: red;
+    font-weight: 500;
+    transition: .5s;
+}
+
+.link:hover{
+    color:black;
+}

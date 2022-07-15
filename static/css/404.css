@@ -1,0 +1,24 @@
+.f0f-img{
+    display: block;
+    margin: 60px auto;
+}
+
+.f0f-msg-head{
+    text-align: center;
+    text-transform: capitalize;
+    color: red;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.f0f-msg{
+    text-align: center;
+    text-transform: capitalize;
+    color: rgb(56, 12, 12);
+    margin-bottom: 20px;
+}
+
+.f0f-msg a{
+    color: red;
+}
